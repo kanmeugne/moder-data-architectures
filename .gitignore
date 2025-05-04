@@ -1,0 +1,11 @@
+docs/
+*.aux
+*.snm
+*.toc
+*.toc
+*.tex
+*.log
+*.nav
+*.out
+.env
+*.png
