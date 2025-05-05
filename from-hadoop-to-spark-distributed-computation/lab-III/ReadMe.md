@@ -1,4 +1,7 @@
-Here’s a consolidated walkthrough for building a **multi-node Spark cluster with Hadoop (HDFS) on multiple local network computers using Docker**, loading a CSV dataset, running in-memory analytics with PySpark and SparkSQL, and exploring results-all **without MapReduce or Hive**.
+# Multi-node Spark cluster on a local network of computers using Docker
+
+- Objectives : Loading a CSV dataset, running in-memory analytics with PySpark and SparkSQL, and exploring results
+- For : 3 or 4 persons
 
 ---
 

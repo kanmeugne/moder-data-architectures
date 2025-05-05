@@ -1,6 +1,8 @@
 #  **Custom Hadoop Cluster on a single computer using Docker**
 
-Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, including **cluster verification** and **detailed steps for creating and querying an external table in Hive**:
+- Desecription : walkthrough for setting up a Hadoop cluster with Docker, including 
+**cluster verification** and **detailed steps for creating and querying an external table in Hive**
+- For : 1 person
 
 ---
 
@@ -12,7 +14,7 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
   cd docker-hadoop
   docker-compose up -d
   ```
-  This launches NameNode, DataNodes, and supporting services in containers[^2][^5].
+  This launches NameNode, DataNodes, and supporting services in containers.
 
 ---
 
@@ -22,7 +24,7 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
   ```bash
   docker ps
   ```
-  All Hadoop containers (namenode, datanode(s), etc.) should be listed[^2].
+  All Hadoop containers (namenode, datanode(s), etc.) should be listed.
 
 - **Check Hadoop web UI:**  
   Open [http://localhost:9870](http://localhost:9870) in your browser.  
@@ -50,7 +52,8 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
   hdfs dfs -mkdir -p /input
   hdfs dfs -put /tmp/movierating.csv /input/
   ```
-  Your file is now available at `/input/movierating.csv` in HDFS[^2].
+  Your file is now available at `/input/movierating.csv` in HDFS.
+  > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/)
 
 ---
 
@@ -58,7 +61,7 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
 
 - **Access the Hive service (if using a Hive container):**  
   ```bash
-  docker exec -it hive-server bash
+  docker exec -it bde2020/hive:2.3.2-postgresql-metastore bash
   beeline -u jdbc:hive2://localhost:10000
   ```
 
@@ -74,7 +77,7 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
   STORED AS TEXTFILE
   LOCATION '/input';
   ```
-  - This tells Hive to use the CSV at `/input` in HDFS as the data source[^6][^8].
+  - This tells Hive to use the CSV at `/input` in HDFS as the data source.
 
 - **Query the table:**  
   ```sql
@@ -101,7 +104,7 @@ Here’s an updated walkthrough for setting up a Hadoop cluster with Docker, inc
 
 Let me know if you want help with Hive installation in Docker or further query examples!
 
-Citations:
+Resources:
 [^1]: https://github.com/Segence/docker-hadoop/blob/master/README.md
 [^2]: https://cjlise.github.io/hadoop-spark/Setup-Hadoop-Cluster/
 [^3]: https://stackoverflow.com/questions/61449001/how-do-i-find-my-hadoop-cluster-run-from-docker

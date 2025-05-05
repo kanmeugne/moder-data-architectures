@@ -3,7 +3,7 @@
 ## **1. Cluster Setup**
 
 - **Prepare your machines:**  
-  - Each computer must have Docker installed and be connected to the same local network[^3][^4][^5].
+  - Each computer must have Docker installed and be connected to the same local network[^3][^5].
   - Assign each machine a static IP or hostname.
 
 - **Create a Docker network (optional but recommended):**  
@@ -12,23 +12,23 @@
   docker network create hadoop_network
   ```
 
-- **Start the NameNode on one machine (replace ``):**
+- **Start the NameNode on one machine (replace `<MASTER_IP>`):**
   ```bash
   docker run -d --name namenode \
     --network hadoop_network \
     -p 9870:9870 -p 8020:8020 \
-    -e CORE_CONF_fs_defaultFS=hdfs://:8020 \
+    -e CORE_CONF_fs_defaultFS=hdfs://<MASTER_IP>:8020 \
     bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
   ```
 
-- **Start DataNodes on other machines (replace `` and ``):**
+- **Start DataNodes on other machines (replace `<MASTER_IP>`):**
   ```bash
   docker run -d --name datanode \
     --network hadoop_network \
-    -e CORE_CONF_fs_defaultFS=hdfs://:8020 \
+    -e CORE_CONF_fs_defaultFS=hdfs://<MASTER_IP>:8020 \
     bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
   ```
-  Repeat for each DataNode, changing container names and IPs as needed[^3][^4].
+  Repeat for each DataNode, changing container names and IPs as needed[^3].
 
 ---
 
@@ -40,7 +40,7 @@
   docker exec namenode hdfs dfsadmin -report
   ```
   - You should see all DataNodes listed as live.
-  - Access the NameNode web UI at `http://:9870`[^3][^4].
+  - Access the NameNode web UI at `http://<MASTER_IP>:9870`[^3].
 
 ---
 
@@ -121,10 +121,10 @@
   ```bash
   docker run -d --name datanode2 \
     --network hadoop_network \
-    -e CORE_CONF_fs_defaultFS=hdfs://:8020 \
+    -e CORE_CONF_fs_defaultFS=hdfs://<MASTER_IP>:8020 \
     bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
   ```
-- The new DataNode will auto-register with the NameNode[^3][^4].
+- The new DataNode will auto-register with the NameNode[^3].
 
 ---
 
@@ -167,10 +167,7 @@
 | 2     | 75               | Parallel processing      |
 | 3     | 55               | Further speedup          |
 
----
-
-**You now have a scalable, distributed Hadoop cluster using Docker containers on multiple computers, with MapReduce jobs in Python and result exploration via Hive.**  
-Want more details on Hive queries or troubleshooting cluster setup?
+--- 
 
 Resources:
 [^1]: https://www.youtube.com/watch?v=FvVaQrQC6_w
