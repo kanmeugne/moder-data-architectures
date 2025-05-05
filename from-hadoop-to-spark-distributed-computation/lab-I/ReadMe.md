@@ -11,7 +11,7 @@
 - **Clone and deploy the Hadoop Docker setup:**  
   ```bash
   git clone https://github.com/big-data-europe/docker-hadoop.git
-  cd docker-hadoop # tip : modify the add a custom `hadoop-network` and use it for your services 
+d  cd docker-hadoop # tip : modify the add a custom `hadoop-network` and use it for your services 
   docker-compose up -d
   ```
   This launches NameNode, DataNodes, and supporting services in containers.
