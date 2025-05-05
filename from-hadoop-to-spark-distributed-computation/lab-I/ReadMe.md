@@ -51,7 +51,8 @@
   hdfs dfs -put /tmp/movierating.csv /input/ # in the docker
   ```
   Your file is now available at `/input/movierating.csv` in HDFS.
-  > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/). Unzip the file and rename u.data into movierating.csv
+  > - Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/).
+  > - Unzip the file and rename u.data into movierating.csv
 
 ---
 
@@ -66,7 +67,15 @@
   ```bash
   # in the docker
   beeline -u jdbc:hive2://localhost:10000
-  jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS movierating (user_id STRING, movie_id STRING, rating FLOAT, datation STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/input';
+  jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS movierating (
+    user_id STRING,
+    movie_id STRING,
+    rating FLOAT,
+    datation STRING
+  ) ROW FORMAT
+  DELIMITED FIELDS TERMINATED BY '\t'
+  STORED AS TEXTFILE
+  LOCATION '/input';
   ```
 This tells Hive to use the CSV at `/input` in HDFS as the data source.
 
