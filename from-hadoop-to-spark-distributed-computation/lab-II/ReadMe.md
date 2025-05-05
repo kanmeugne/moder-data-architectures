@@ -3,7 +3,7 @@
 ## **1. Cluster Setup**
 
 - **Prepare your machines:**  
-  - Each computer must have Docker installed and be connected to the same local network[^3][^5].
+  - Each computer must have Docker installed and be connected to the same local network.
   - Assign each machine a static IP or hostname.
 
 - **Create a Docker network (optional but recommended):**  
@@ -28,7 +28,7 @@
     -e CORE_CONF_fs_defaultFS=hdfs://<MASTER_IP>:8020 \
     bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
   ```
-  Repeat for each DataNode, changing container names and IPs as needed[^3].
+  Repeat for each DataNode, changing container names and IPs as needed.
 
 ---
 
@@ -40,7 +40,7 @@
   docker exec namenode hdfs dfsadmin -report
   ```
   - You should see all DataNodes listed as live.
-  - Access the NameNode web UI at `http://<MASTER_IP>:9870`[^3].
+  - Access the NameNode web UI at `http://<MASTER_IP>:9870`.
 
 ---
 
@@ -50,6 +50,7 @@
   ```bash
   docker cp movierating.csv namenode:/tmp/
   ```
+  > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/)
 
 - **Load the CSV into HDFS:**
   ```bash
@@ -91,7 +92,7 @@
   if current_movie:
       print(f"{current_movie}\t{sum(ratings)/len(ratings):.2f}")
   ```
-  *Explanation:* For each movie, compute and output the average of its ratings[^6][^8][^9][^11].
+  *Explanation:* For each movie, compute and output the average of its ratings.
 
 ---
 
@@ -124,7 +125,7 @@
     -e CORE_CONF_fs_defaultFS=hdfs://<MASTER_IP>:8020 \
     bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
   ```
-- The new DataNode will auto-register with the NameNode[^3].
+- The new DataNode will auto-register with the NameNode.
 
 ---
 

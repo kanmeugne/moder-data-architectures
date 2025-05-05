@@ -28,7 +28,7 @@
 
 - **Check Hadoop web UI:**  
   Open [http://localhost:9870](http://localhost:9870) in your browser.  
-  You should see the NameNode dashboard, and under "Live Nodes" your DataNodes should be visible[^2].
+  You should see the NameNode dashboard, and under "Live Nodes" your DataNodes should be visible.
 
 - **Check from inside the NameNode:**  
   ```bash
