@@ -102,8 +102,6 @@
 
 ---
 
-Let me know if you want help with Hive installation in Docker or further query examples!
-
 Resources:
 [^1]: https://github.com/Segence/docker-hadoop/blob/master/README.md
 [^2]: https://cjlise.github.io/hadoop-spark/Setup-Hadoop-Cluster/

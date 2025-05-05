@@ -132,8 +132,7 @@ print("Elapsed:", time.time() - start)
 ---
 
 **Summary:**  
-You now have a scalable Spark cluster using Docker on multiple computers, with in-memory analytics and SQL queries via SparkSQL-no MapReduce or Hive needed.  
-Want sample data, more SparkSQL examples, or troubleshooting tips?
+You now have a scalable Spark cluster using Docker on multiple computers, with in-memory analytics and SQL queries via SparkSQL.
 
 Resources:
 [1] https://github.com/Marcel-Jan/docker-hadoop-spark
