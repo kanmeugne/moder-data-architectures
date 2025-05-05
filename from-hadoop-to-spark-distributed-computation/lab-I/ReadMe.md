@@ -81,7 +81,13 @@ This tells Hive to use the CSV at `/input` in HDFS as the data source.
 
 - **Query the table**
   ```bash
-  jdbc:hive2://localhost:10000> select movie_id, avg(rating) as rating from movierating group by movie_id order  by length(movie_id), movie_id limit 10;
+  jdbc:hive2://localhost:10000>
+  select movie_id,
+  avg(rating) as rating
+  from movierating
+  group by movie_id
+  order by length(movie_id), movie_id
+  limit 10;
   ```
   ```verbatim
   +-----------+---------------------+
