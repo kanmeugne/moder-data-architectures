@@ -110,7 +110,7 @@
 
 - **Run the job:**
   ```bash
-  docker exec namenode hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+  docker exec namenode hadoop jar /opt/hadoop-<version>/share/hadoop/tools/lib/hadoop-streaming-<version>.jar \
     -files /tmp/mapper.py,/tmp/reducer.py \
     -mapper "python3 mapper.py" \
     -reducer "python3 reducer.py" \
