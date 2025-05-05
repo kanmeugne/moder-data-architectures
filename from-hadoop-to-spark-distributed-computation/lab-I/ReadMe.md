@@ -10,11 +10,11 @@
 
 - **Clone and deploy the Hadoop Docker setup:**  
   ```bash
-  git clone https://github.com/big-data-europe/docker-hadoop.git
-  cd docker-hadoop # tip : modify the add a custom `hadoop-network` and use it for your services 
-  docker-compose up -d
+  $ git clone https://github.com/big-data-europe/docker-hive/tree/master
+  $ cd docker-hive  
+  $ docker-compose up -d
   ```
-  This launches NameNode, DataNodes, and supporting services in containers.
+  This launches namenodes, datanodes, and supporting services in containers. It also creates a hive server, to create and query data in a hdfs-compatible database.
 
 ---
 
@@ -25,17 +25,14 @@
   docker ps
   ```
   All Hadoop containers (namenode, datanode(s), etc.) should be listed.
-
-- **Check Hadoop web UI:**  
-  Open [http://localhost:9870](http://localhost:9870) in your browser.  
-  You should see the NameNode dashboard, and under "Live Nodes" your DataNodes should be visible.
-
+  
 - **Check from inside the NameNode:**  
   ```bash
-  docker exec -it namenode bash
-  hdfs dfsadmin -report
+  docker exec -it <namenode> bash
+  hdfs dfsadmin -report # in the docker
   ```
   This command lists all live DataNodes connected to the cluster.
+  > `namenode` is the name of the namenode container.
 
 ---
 
@@ -43,14 +40,15 @@
 
 - **Copy your CSV file into the NameNode container:**  
   ```bash
-  docker cp movierating.csv namenode:/tmp/
+  docker cp movierating.csv <namenode>:/tmp/ # on the docker host
   ```
+  > `namenode` is the name of your NameNode container
 
 - **Load the CSV into HDFS:**  
   ```bash
-  docker exec -it namenode bash
-  hdfs dfs -mkdir -p /input
-  hdfs dfs -put /tmp/movierating.csv /input/
+  docker exec -it <namenode> bash
+  hdfs dfs -mkdir -p /input # in the docker
+  hdfs dfs -put /tmp/movierating.csv /input/ # in the docker
   ```
   Your file is now available at `/input/movierating.csv` in HDFS.
   > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/)
@@ -59,37 +57,42 @@
 
 ## **4. Create and Query an External Table in Hive**
 
-- **Access the Hive service:**  
+- **Access the Hive service: `<hive-server>` is the name of your hive server**  
   ```bash
-  docker run -it --network docker-hadoop_hadoop_network bde2020/hive:2.3.2-postgresql-metastore bash # tip : use the custom network created above
+  docker exec -it <hive-server> bash
+  ```
+  > `<hive-server>` is the name of the hive-server container
+- **Create an external table referencing the HDFS file:**
+  ```bash
+  # in the docker
   beeline -u jdbc:hive2://localhost:10000
+  jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS movierating (user_id STRING, movie_id STRING, rating FLOAT, datation STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION '/input';
+  ```
+This tells Hive to use the CSV at `/input` in HDFS as the data source.
+
+- **Query the table**
+  ```bash
+  jdbc:hive2://localhost:10000> select movie_id, avg(rating) as rating from movierating group by movie_id order  by length(movie_id), movie_id limit 10;
+  ```
+  ```verbatim
+  +-----------+---------------------+
+  | movie_id  |       rating        |
+  +-----------+---------------------+
+  | 1         | 3.8783185840707963  |
+  | 2         | 3.2061068702290076  |
+  | 3         | 3.033333333333333   |
+  | 4         | 3.550239234449761   |
+  | 5         | 3.302325581395349   |
+  | 6         | 3.576923076923077   |
+  | 7         | 3.798469387755102   |
+  | 8         | 3.9954337899543377  |
+  | 9         | 3.8963210702341136  |
+  | 10        | 3.831460674157303   |
+  +-----------+---------------------+
+  10 rows selected (2.909 seconds)
   ```
 
-- **Create an external table referencing the HDFS file:**  
-  ```sql
-  CREATE EXTERNAL TABLE IF NOT EXISTS movierating (
-    user_id STRING,
-    movie_id STRING,
-    rating FLOAT
-  )
-  ROW FORMAT DELIMITED
-  FIELDS TERMINATED BY ','
-  STORED AS TEXTFILE
-  LOCATION '/input';
-  ```
-  - This tells Hive to use the CSV at `/input` in HDFS as the data source.
-
-- **Query the table:**  
-  ```sql
-  SELECT movie_id, AVG(rating) AS avg_rating
-  FROM movierating
-  GROUP BY movie_id
-  ORDER BY avg_rating DESC
-  LIMIT 10;
-  ```
-  - This computes and displays the top 10 movies by average rating.
-
----
+- **Ajouter des datanodes et comparer les temps d'exécution**
 
 ## **Summary Table**
 
