@@ -51,7 +51,7 @@
   hdfs dfs -put /tmp/movierating.csv /input/ # in the docker
   ```
   Your file is now available at `/input/movierating.csv` in HDFS.
-  > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/)
+  > Download the file at : [https://grouplens.org/datasets/movielens/100k/](https://grouplens.org/datasets/movielens/100k/). Unzip the file and rename u.data into movierating.csv
 
 ---
 
