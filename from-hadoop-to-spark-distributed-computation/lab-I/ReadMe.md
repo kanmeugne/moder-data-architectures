@@ -59,9 +59,9 @@
 
 ## **4. Create and Query an External Table in Hive**
 
-- **Access the Hive service (if using a Hive container):**  
+- **Access the Hive service:**  
   ```bash
-  docker exec -it bde2020/hive:2.3.2-postgresql-metastore bash
+  docker run -it --network hadoop_network bde2020/hive:2.3.2-postgresql-metastore bash
   beeline -u jdbc:hive2://localhost:10000
   ```
 
