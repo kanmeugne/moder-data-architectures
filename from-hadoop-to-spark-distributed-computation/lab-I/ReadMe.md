@@ -1,6 +1,6 @@
 #  **Custom Hadoop Cluster on a single computer using Docker**
 
-- Desecription : walkthrough for setting up a Hadoop cluster with Docker, including 
+- Objectives : walkthrough for setting up a Hadoop cluster with Docker, including 
 **cluster verification** and **detailed steps for creating and querying an external table in Hive**
 - For : 1 person
 

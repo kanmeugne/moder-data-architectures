@@ -1,5 +1,9 @@
 # Custom Hadoop Cluster on a local network using Docker
 
+- Objectives : walkthrough for setting up a Hadoop cluster with Docker, including 
+**cluster verification** and **detailed steps for creating and querying an external table in Hive**
+- For : 3 persons
+
 ## **1. Cluster Setup**
 
 - **Prepare your machines:**  

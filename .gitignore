@@ -9,3 +9,5 @@ docs/
 *.out
 .env
 *.png
+data/
+
