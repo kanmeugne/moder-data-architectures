@@ -11,7 +11,7 @@
 - **Clone and deploy the Hadoop Docker setup:**  
   ```bash
   git clone https://github.com/big-data-europe/docker-hadoop.git
-  cd docker-hadoop
+  cd docker-hadoop # tip : modify the add a custom `hadoop-network` and use it for your services 
   docker-compose up -d
   ```
   This launches NameNode, DataNodes, and supporting services in containers.
@@ -61,7 +61,7 @@
 
 - **Access the Hive service:**  
   ```bash
-  docker run -it --network hadoop_network bde2020/hive:2.3.2-postgresql-metastore bash
+  docker run -it --network docker-hadoop_hadoop_network bde2020/hive:2.3.2-postgresql-metastore bash # tip : use the custom network created above
   beeline -u jdbc:hive2://localhost:10000
   ```
 
