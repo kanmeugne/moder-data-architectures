@@ -10,7 +10,7 @@
 
 - **Clone and deploy the Hadoop Docker setup:**  
   ```bash
-  $ git clone https://github.com/big-data-europe/docker-hive/tree/master
+  $ git clone https://github.com/big-data-europe/docker-hive.git
   $ cd docker-hive  
   $ docker-compose up -d
   ```
