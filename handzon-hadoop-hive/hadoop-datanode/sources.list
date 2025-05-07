@@ -1,0 +1,24 @@
+# 
+# File: /home/patrick/Documents/Projects/modern-data-architectures/handzon-pyspark/hadoop-namenode/sources.list
+# Project: /home/patrick/Documents/Projects/modern-data-architectures/handzon-pyspark/hadoop-namenode
+# Created Date: Tuesday, May 6th 2025, 9:58:41 pm
+# Author: Patrick S. Kanmeugne
+# -----
+# Last Modified: Tue May 06 2025
+# Modified By: Patrick S. Kanmeugne
+# -----
+# Copyright (c) 2025 AiConLab
+# 
+# -----
+# HISTORY:
+# Date      	By	Comments
+# ----------	---	----------------------------------------------------------
+# 
+
+
+deb http://snapshot.debian.org/archive/debian/20200130T000000Z stretch main
+
+
+
+
+
