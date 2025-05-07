@@ -1,0 +1,110 @@
+version: "3.9"
+
+services:
+  namenode:
+    build: ./hadoop-namenode
+    container_name: namenode
+    restart: always
+    ports:
+      - 9870:9870
+      - 9000:9000
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    networks:
+      - hadoop_network
+    env_file:
+      - ./hadoop.env
+
+  datanode:
+    build: ./hadoop-datanode
+    container_name: datanode
+    restart: always
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    networks:
+      - hadoop_network
+    env_file:
+      - ./hadoop.env
+
+  resourcemanager:
+    build: ./hadoop-rsmgr
+    container_name: resourcemanager
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
+    networks:
+      - hadoop_network
+    env_file:
+      - ./hadoop.env
+
+  nodemanager1:
+    build: ./hadoop-nodemgr
+    container_name: nodemanager
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    networks:
+      - hadoop_network
+    volumes:
+      - ./sources.list:/etc/apt/sources.list
+    env_file:
+      - ./hadoop.env
+  
+  historyserver:
+    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    container_name: historyserver
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    networks:
+      - hadoop_network
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+    env_file:
+      - ./hadoop.env
+
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-server
+    env_file:
+      - ./hadoop.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    networks:
+      - hadoop_network
+    ports:
+      - "10000:10000"
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
+    env_file:
+      - ./hadoop.env
+    command: /opt/hive/bin/hive --service metastore
+    networks:
+      - hadoop_network
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870 namenode:9000 hive-metastore-postgresql:5432"
+    ports:
+      - "9083:9083"
+
+  hive-metastore-postgresql:
+    container_name: hive-metastore-postgresql
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    networks:
+      - hadoop_network
+
+  
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_historyserver:
+
+networks:
+  hadoop_network:
+    driver: bridge
