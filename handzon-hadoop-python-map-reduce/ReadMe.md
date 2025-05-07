@@ -18,12 +18,7 @@ $ docker compose up -d
 $ docker cp movieratings.csv namenode:/tmp/
 $ docker exec namenode hdfs dfs -mkdir -p /4ddev/jour-2/
 $ docker exec namenode hdfs dfs -put /tmp/movieratings.csv /4ddev/jour-2/
-```
-- **Add python to nodes and managers**
-
-```bash
-$ docker exec nodemanager bash -c "apt update && apt install python3 -y"
-$ docker exec resourcemanager bash -c "apt update && apt install python3 -y"
+...
 ```
 
 - **Test the mapper and reducer functions on the host**
