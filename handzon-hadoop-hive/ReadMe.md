@@ -177,7 +177,7 @@ $ docker cp reducer.py namenode:/tmp/
 - **Start the Hive server (on any cluster node):**
   ```bash
   $ docker exec -it hive-server bash 
-  root@xxx:/opt/ beeline -u jdbc:hive2://locahost:10000
+  root@xxx:/opt/ beeline -u jdbc:hive2://localhost:10000
   SLF4J: Class path contains multiple SLF4J bindings.
   SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
   SLF4J: Found binding in [jar:file:/opt/hadoop-2.7.4/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
