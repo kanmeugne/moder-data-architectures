@@ -9,7 +9,5 @@ docs/
 *.out
 .env
 *.png
-olist*.csv
-data/
-diagrams/
+source_data/*.csv
 
