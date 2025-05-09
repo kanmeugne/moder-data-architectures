@@ -68,7 +68,7 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
   order by length(movie_id), movie_id
   limit 10;
   ```
-  ```shell
+  ```verbatim
   # results
   +-----------+---------------------+
   | movie_id  |       rating        |
