@@ -81,22 +81,7 @@ $ docker cp reducer.py namenode:/tmp/
   2025-05-05 22:48:58,319 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.31.0.2:10200
   2025-05-05 22:48:58,349 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.31.0.3:8032
   2025-05-05 22:48:58,349 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.31.0.2:10200
-  2025-05-05 22:48:58,555 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1746480150345_0009
-  2025-05-05 22:48:58,678 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:58,777 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:58,795 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:58,861 INFO mapred.FileInputFormat: Total input files to process : 1
-  2025-05-05 22:48:58,889 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:58,906 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:58,915 INFO mapreduce.JobSubmitter: number of splits:2
-  2025-05-05 22:48:59,043 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-  2025-05-05 22:48:59,052 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1746480150345_0009
-  2025-05-05 22:48:59,053 INFO mapreduce.JobSubmitter: Executing with tokens: []
-  2025-05-05 22:48:59,221 INFO conf.Configuration: resource-types.xml not found
-  2025-05-05 22:48:59,222 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
-  2025-05-05 22:48:59,690 INFO impl.YarnClientImpl: Submitted application application_1746480150345_0009
-  2025-05-05 22:48:59,727 INFO mapreduce.Job: The url to track the job: http://resourcemanager:8088/proxy/application_1746480150345_0009/
-  2025-05-05 22:48:59,728 INFO mapreduce.Job: Running job: job_1746480150345_0009
+  ...
   2025-05-05 22:49:05,815 INFO mapreduce.Job: Job job_1746480150345_0009 running in uber mode : false
   2025-05-05 22:49:05,816 INFO mapreduce.Job:  map 0% reduce 0%
   2025-05-05 22:49:11,892 INFO mapreduce.Job:  map 50% reduce 0%
@@ -104,67 +89,8 @@ $ docker cp reducer.py namenode:/tmp/
   2025-05-05 22:49:16,927 INFO mapreduce.Job:  map 100% reduce 100%
   2025-05-05 22:49:16,936 INFO mapreduce.Job: Job job_1746480150345_0009 completed successfully
   2025-05-05 22:49:17,032 INFO mapreduce.Job: Counters: 54
-    File System Counters
-      FILE: Number of bytes read=70062
-      FILE: Number of bytes written=847841
-      FILE: Number of read operations=0
-      FILE: Number of large read operations=0
-      FILE: Number of write operations=0
-      HDFS: Number of bytes read=1983459
-      HDFS: Number of bytes written=15206
-      HDFS: Number of read operations=11
-      HDFS: Number of large read operations=0
-      HDFS: Number of write operations=2
-      HDFS: Number of bytes read erasure-coded=0
-    Job Counters 
-      Launched map tasks=2
-      Launched reduce tasks=1
-      Rack-local map tasks=2
-      Total time spent by all maps in occupied slots (ms)=21296
-      Total time spent by all reduces in occupied slots (ms)=21576
-      Total time spent by all map tasks (ms)=5324
-      Total time spent by all reduce tasks (ms)=2697
-      Total vcore-milliseconds taken by all map tasks=5324
-      Total vcore-milliseconds taken by all reduce tasks=2697
-      Total megabyte-milliseconds taken by all map tasks=21807104
-      Total megabyte-milliseconds taken by all reduce tasks=22093824
-    Map-Reduce Framework
-      Map input records=100000
-      Map output records=100000
-      Map output bytes=591415
-      Map output materialized bytes=79461
-      Input split bytes=190
-      Combine input records=0
-      Combine output records=0
-      Reduce input groups=1682
-      Reduce shuffle bytes=79461
-      Reduce input records=100000
-      Reduce output records=1682
-      Spilled Records=200000
-      Shuffled Maps =2
-      Failed Shuffles=0
-      Merged Map outputs=2
-      GC time elapsed (ms)=134
-      CPU time spent (ms)=5860
-      Physical memory (bytes) snapshot=843194368
-      Virtual memory (bytes) snapshot=18768244736
-      Total committed heap usage (bytes)=838860800
-      Peak Map Physical memory (bytes)=309211136
-      Peak Map Virtual memory (bytes)=5140819968
-      Peak Reduce Physical memory (bytes)=226840576
-      Peak Reduce Virtual memory (bytes)=8488579072
-    Shuffle Errors
-      BAD_ID=0
-      CONNECTION=0
-      IO_ERROR=0
-      WRONG_LENGTH=0
-      WRONG_MAP=0
-      WRONG_REDUCE=0
-    File Input Format Counters 
-      Bytes Read=1983269
-    File Output Format Counters 
-      Bytes Written=15206
-    2025-05-05 22:49:17,032 INFO streaming.StreamJob: Output directory: /output
+  ...
+  2025-05-05 22:49:17,032 INFO streaming.StreamJob: Output directory: /output
 ```
 
 ## Use a hive server
