@@ -36,10 +36,8 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
   $ docker exec -it <namenode> bash
   $ hdfs dfs -mkdir -p /input # in the docker
   $ hdfs dfs -put /tmp/movierating.csv /input/ # in the docker
+  $ exit
   ```
-
-## Create and Query an External Table in Hive
-
 - **Access the Hive service: `<hive-server>` is the name of your hive server**  
   ```bash
   $ docker exec -it <hive-server> bash # here `namenode` is the name of the namenode containe
