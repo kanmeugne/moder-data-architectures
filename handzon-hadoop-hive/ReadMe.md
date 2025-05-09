@@ -20,19 +20,16 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
   
 - **Check from inside the name node:**  
   ```bash
-  $ docker exec -it <namenode> bash
-  $ hdfs dfsadmin -report # in the docker
+  $ docker exec -it <namenode> bash # here `<namenode>` is the name of the namenode container
+  $ hdfs dfsadmin -report # this command lists all live DataNodes connected to the cluster.
   ```
-  > - here `namenode` is the name of the namenode container.
-  > - this command lists all live DataNodes connected to the cluster.
 
 - **Copy your CSV file into the NameNode container:**  
   ```bash
   $ curl -L -o movieratings.csv https://files.grouplens.org/datasets/movielens/ml-100k/u.data
   $ docker cp movieratings.csv <namenode>:/tmp/ # on the docker host
   ```
-  > - `namenode` is the name of your NameNode container
-  > - the [dataset](https://grouplens.org/datasets/movielens/100k/ "MovieLens data sets were collected by the GroupLens Research Project at the University of Minnesota.") comes from [GroupLens](https://grouplens.org/about/what-is-grouplens/), a research lab in the Department of Computer Science and Engineering at the University of Minnesota, Twin Cities specializing in recommender systems, online communities, mobile and ubiquitous technologies, digital libraries, and local geographic information systems.
+  The [dataset](https://grouplens.org/datasets/movielens/100k/ "MovieLens data sets were collected by the GroupLens Research Project at the University of Minnesota.") comes from [GroupLens](https://grouplens.org/about/what-is-grouplens/), a research lab in the Department of Computer Science and Engineering at the University of Minnesota, Twin Cities specializing in recommender systems, online communities, mobile and ubiquitous technologies, digital libraries, and local geographic information systems.
 
 - **Load the CSV into HDFS:**  
   ```bash
@@ -45,13 +42,13 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
 
 - **Access the Hive service: `<hive-server>` is the name of your hive server**  
   ```bash
-  $ docker exec -it <hive-server> bash
+  $ docker exec -it <hive-server> bash # here `namenode` is the name of the namenode containe
   ```
-  > `<hive-server>` is the name of the hive-server container
 - **Create an external table referencing the HDFS file:**
   ```bash
   # in the docker
   $ beeline -u jdbc:hive2://localhost:10000
+  # This tells Hive to use the CSV at `/input` in HDFS as the data source.
   $ jdbc:hive2://localhost:10000> CREATE EXTERNAL TABLE IF NOT EXISTS movierating (
     user_id STRING,
     movie_id STRING,
@@ -60,9 +57,8 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
   ) ROW FORMAT
   DELIMITED FIELDS TERMINATED BY '\t'
   STORED AS TEXTFILE
-  LOCATION '/input';
+  LOCATION '/input'; 
   ```
-> This tells Hive to use the CSV at `/input` in HDFS as the data source.
 
 - **Query the table**
   ```bash
@@ -74,7 +70,8 @@ This hands-on tutorial will guide you through setting up an Apache Hadoop cluste
   order by length(movie_id), movie_id
   limit 10;
   ```
-  ```verbatim
+  ```shell
+  # results
   +-----------+---------------------+
   | movie_id  |       rating        |
   +-----------+---------------------+
