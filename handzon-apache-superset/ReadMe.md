@@ -149,6 +149,7 @@ product -r-> product_category_name_translation : product_category_name
 product <-u- order_item : product_id
 
 hide empty members
+@enduml
 ```
 _Data model of the [**Brazilian E-Commerce Public Dataset by Olist**][6]_
 
