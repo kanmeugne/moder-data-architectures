@@ -1,0 +1,115 @@
+@startuml
+header Fig. Olist Brazilian Database
+
+entity customer {
+  * **customer_id : str**
+  .. fkeys ..
+  * customer_zip_code_prefix : varchar
+  ..
+  customer_unique_id : varchar
+  customer_city : varchar
+  customer_state : varchar
+}
+
+entity geolocation {
+  * **zip_code_prefix : varchar**
+  ..
+  geolocation_lat : double
+  geolocation_lng : double
+  geolocation_city : varchar
+  geolocation_state : varchar
+
+}
+
+entity order {
+    * **order_id : varchar**
+    .. fkeys ..
+    * customer_id : varchar
+    ..
+    order_status : varchar 
+    order_purchase_timestamp : timestamp
+    order_approved_at : timestamp
+    order_delivered_carrier_date : timestamp
+    order_delivered_customer_date : timestamp
+    order_estimated_delivery_date : timestamp
+
+}
+
+entity order_payment {
+    .. fkeys ..
+    * order_id : varchar
+    ..
+    order_payment : varchar    
+    payment_sequential : integer
+    payment_type : varchar
+    payment_installments : varchar
+    payment_value : double
+}
+
+entity seller {
+    * **seller_id : varchar**
+    .. fkeys ..    
+    * seller_zip_code_prefix : varchar
+    * ..
+    seller_city : varchar
+    seller_state : varchar
+}
+
+entity product {
+    * **product_id : varchar**
+    .. fkeys ..
+    * production_category_name : varchar
+    ..
+    product_name_length : integer
+    product_description_length : integer
+    product_photos_qty : integer
+    product_weight_g : integer
+    product_length_cm : integer
+    product_height_cm : integer
+    product_width_cm : integer
+}
+
+entity order_review {
+    .. fkeys ..
+    * order_id varchar
+    ..
+    review_id : varchar
+    review_score: integer
+    review_comment_title: varchar
+    review_comment_message: text
+    review_creation_date: date
+    review_answer_timestamp: timestamp
+}
+
+entity order_item {
+    .. fkeys ..
+    * order_id : varchar
+    * product_id : varchar
+    * seller_id : varchar
+    ..
+    order_item_id integer
+    shipping_limit_date timestamp
+    price : double
+    freight_value : double
+}
+
+entity product_category_name_translation {
+    * **product_category_name : varchar**
+    ..
+    product_category_name_english : varchar
+}
+
+order_review -r-> order : order_id
+order_payment -d-> order : order_id
+order -d-> customer : customer_id
+order_item -l-> order : order_id
+order_item -r-> seller : seller_id
+seller -d-> geolocation : seller_zip_code_prefix
+customer -r--> geolocation : customer_zip_code_prefix
+product -r-> product_category_name_translation : product_category_name
+product <-u- order_item : product_id
+
+hide empty members
+@enduml
+
+
