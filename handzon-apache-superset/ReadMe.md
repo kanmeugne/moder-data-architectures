@@ -29,7 +29,7 @@ SUPERSET_ADMIN_EMAIL=
 SUPERSET_ADMIN_FIRST_NAME=
 SUPERSET_ADMIN_LAST_NAME=
 ```
-- **Download the dataset** and save the file in `source_data` (you need to do that before building the app) :
+- **Download the dataset** and save the file into `source_data` (you need to do it before building the app) :
 ```bash
 handzon-apache-superset/source_data$ curl -L -o brazilian-ecommerce.zip https://www.kaggle.com/api/v1/datasets/download/olistbr/brazilian-ecommerce 
 handzon-apache-superset/source_data$ unzip brazilian-ecommerce.zip
@@ -45,7 +45,7 @@ _Data model of the [**Brazilian E-Commerce Public Dataset by Olist**][6]_
 handzon-apache-superset$ docker compose up -d
 ...
 ```
-The build process might be long at first run, so be patient... When everything is up, use your favorite browser and do the following checkups
+The build process might be long at first run, so be patient... When everything is up, use your favorite browser and do the following checkups :
 
 - **Check the database content** by opening the **pgadmin** web endpoint in your browser : `http://localhost:<PGADMIN_PORT>`. You will have to log in **pgadmin** with the username and the password that you have defined in the `.env` file.
 ```shell
@@ -68,7 +68,7 @@ POSTGRES_PORT=***
 ```
 
 ![img-description](./img/create-db-connexion.gif)
-_PGAdmin Connexion,  Navigating through your tables_
+_PGAdmin Connexion + Navigation into your sql tables_
 
 ## Create analytics within Superset
 
@@ -128,7 +128,7 @@ from olist_order_items_dataset  oi
 
 <img src="img/create-query-dataset-04.png" width="50%" title="save the query as a new dataset - 2"></img>
 
-Now that we have collected extended data on orders and products, we can can create charts and dashboards
+Now that we have collected extended data on orders and products, we can create charts and dashboards.
 
 ### Create charts
 
@@ -147,7 +147,7 @@ Now that we have collected extended data on orders and products, we can can crea
 
 <img src="img/chart-01-07.png" width="50%" title="add connexion to the database - 3"></img>
 
-*top 10 sales*
+*top ten  sales*
 - on the dataset tab, click on **orders, products, sellers**
 - use `product_id` as the metric (confirm `COUNT_DISTINCT(product_id)` as the agregation operation), and `product_name` as the dimension. 
 - use the `ROW LIMIT` option to limit the number of items to `10`. You should see this chart (save it as *top ten sales*)
@@ -162,15 +162,15 @@ It is now possible to agregate charts into a dashboard to have an overview of yo
 
 <img src="img/dashboard-01.png" width="50%" title="create a new dashboard"></img>
 
-- check on the right pane to see the available charts you can use to build you dashboard (you should see the charts you have created above)
+- check on the right pane to see the charts you can use to build your dashboard (you should see the charts you have created above)
 
 <img src="img/dashboard-02.png" width="50%" title="explore charts"></img>
 
-- drag all your chart from the right pane and drop them anywhere on the dashboard canva
+- drag all your charts from the right pane and drop them anywhere on the dashboard canva
 
 <img src="img/dashboard-03.png" width="50%" title="drag and drop charts"></img>
 
-- Save the dashboard as *Product Sales View*. You should see it on the dashboard tab. 
+- save the dashboard as *Product Sales View*. You should see it on the dashboard tab. 
 
 <img src="img/dashboard-04.png" width="50%" title="set name and save the dashboard"></img>
 
