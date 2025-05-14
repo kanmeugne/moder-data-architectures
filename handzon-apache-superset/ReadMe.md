@@ -36,7 +36,7 @@ handzon-apache-superset/source_data$ unzip brazilian-ecommerce.zip
 ...
 handzon-apache-superset/source_data$ rm brazilian-ecommerce.zip
 ```
-<img src="./diagrams/datamodel.png" width="100%" title="login into Superset"></img>
+<img src="./diagrams/datamodel.png" width="100%" title="Olist data model"></img>
 
 _Data model of the [**Brazilian E-Commerce Public Dataset by Olist**][6]_
 
