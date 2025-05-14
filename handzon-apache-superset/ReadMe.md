@@ -284,7 +284,7 @@ It is now possible to agregate charts into a dashboard to have an overview of yo
 
 - Save the dashboard as *Product Sales View*. You should see it on the dashboard tab. 
 
-<img src="img/dashboard-03.png" width="50%" title="set name and save the dashboard"></img>
+<img src="img/dashboard-04.png" width="50%" title="set name and save the dashboard"></img>
 
 I hope this tutorial will be helpful for those who want to play with Apache SuperSet and PostgreSQL. Feel free to send me your comments and remarks.
 
