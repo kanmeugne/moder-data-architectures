@@ -8,6 +8,5 @@ docs/
 *.nav
 *.out
 .env
-*.png
 source_data/*.csv
 
