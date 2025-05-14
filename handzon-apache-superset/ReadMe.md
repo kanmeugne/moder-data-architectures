@@ -36,8 +36,8 @@ handzon-apache-superset/source_data$ unzip brazilian-ecommerce.zip
 ...
 handzon-apache-superset/source_data$ rm brazilian-ecommerce.zip
 ```
+<img src="./diagrams/datamodel.png" width="100%" title="login into Superset"></img>
 
-![diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/kanmeugne/modern-data-architectures/refs/heads/master/handzon-apache-superset/diagrams/datamodel.iuml)
 _Data model of the [**Brazilian E-Commerce Public Dataset by Olist**][6]_
 
 - **Build the application** with `docker compose` from the project folder :
